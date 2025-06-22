@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt Enhancer Test Page</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 2px dashed #e0e0e0;
+            border-radius: 8px;
+        }
+        
+        .test-section h3 {
+            color: #4f46e5;
+            margin-top: 0;
+        }
+        
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        
+        textarea {
+            min-height: 100px;
+        }
+        
+        .contenteditable {
+            width: 100%;
+            min-height: 100px;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            box-sizing: border-box;
+        }
+        
+        .instructions {
+            background: #f0f9ff;
+            border: 1px solid #0ea5e9;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .instructions h4 {
+            margin-top: 0;
+            color: #0369a1;
+        }
+        
+        .example-prompts {
+            background: #fefce8;
+            border: 1px solid #eab308;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        
+        .example-prompts h4 {
+            margin-top: 0;
+            color: #a16207;
+        }
+        
+        .example-prompts ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        
+        .example-prompts li {
+            margin-bottom: 8px;
+        }
+        
+        .status {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+        
+        .status.success {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+        
+        .status.error {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Prompt Enhancer Test Page</h1>
+        
+        <div class="instructions">
+            <h4>📋 Instructions</h4>
+            <ol>
+                <li>Make sure you have installed the Prompt Enhancer extension</li>
+                <li>Add "localhost" or your domain to the whitelist in extension settings</li>
+                <li>Enter your Together.ai API key in the extension popup</li>
+                <li>Type a prompt in any text field below</li>
+                <li>Look for the floating "Enhance Prompt" button</li>
+                <li>Click the button to enhance your prompt with AI</li>
+            </ol>
+        </div>
+
+        <div class="test-section">
+            <h3>📝 Standard Textarea</h3>
+            <textarea placeholder="Type your prompt here... (e.g., 'write a blog post about AI')"></textarea>
+        </div>
+
+        <div class="test-section">
+            <h3>📄 Text Input Field</h3>
+            <input type="text" placeholder="Enter a short prompt here...">
+        </div>
+
+        <div class="test-section">
+            <h3>✏️ Content Editable Div</h3>
+            <div class="contenteditable" contenteditable="true" data-placeholder="Click here and type your prompt...">
+                Click here and type your prompt...
+            </div>
+        </div>
+
+        <div class="example-prompts">
+            <h4>💡 Example Prompts to Try</h4>
+            <ul>
+                <li><strong>Simple:</strong> "write a blog post about AI"</li>
+                <li><strong>Creative:</strong> "create a story about a robot"</li>
+                <li><strong>Technical:</strong> "explain machine learning"</li>
+                <li><strong>Business:</strong> "write a marketing email"</li>
+                <li><strong>Educational:</strong> "teach me about photosynthesis"</li>
+            </ul>
+        </div>
+
+        <div id="status" class="status" style="display: none;"></div>
+    </div>
+
+    <script>
+        // Add placeholder behavior for contenteditable
+        const contentEditable = document.querySelector('.contenteditable');
+        const placeholder = contentEditable.getAttribute('data-placeholder');
+        
+        contentEditable.addEventListener('focus', function() {
+            if (this.textContent === placeholder) {
+                this.textContent = '';
+                this.style.color = '#333';
+            }
+        });
+        
+        contentEditable.addEventListener('blur', function() {
+            if (this.textContent.trim() === '') {
+                this.textContent = placeholder;
+                this.style.color = '#999';
+            }
+        });
+        
+        // Initialize placeholder
+        if (contentEditable.textContent === placeholder) {
+            contentEditable.style.color = '#999';
+        }
+        
+        // Listen for extension messages (if any)
+        window.addEventListener('message', function(event) {
+            if (event.data.type === 'PROMPT_ENHANCED') {
+                showStatus('Prompt enhanced successfully!', 'success');
+            } else if (event.data.type === 'PROMPT_ERROR') {
+                showStatus('Enhancement failed: ' + event.data.error, 'error');
+            }
+        });
+        
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = 'status ' + type;
+            status.style.display = 'block';
+            
+            setTimeout(() => {
+                status.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Check if extension is loaded
+        setTimeout(() => {
+            const enhanceButtons = document.querySelectorAll('.pe-enhance-button');
+            if (enhanceButtons.length === 0) {
+                showStatus('Extension not detected. Make sure it\'s installed and this domain is whitelisted.', 'error');
+            } else {
+                showStatus('Extension detected! You should see "Enhance Prompt" buttons near text fields.', 'success');
+            }
+        }, 2000);
+    </script>
+</body>
+</html>
+

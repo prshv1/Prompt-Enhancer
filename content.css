@@ -1,0 +1,66 @@
+/* Content script styles for Prompt Enhancer extension */
+
+/* Ensure our elements don't interfere with page styles */
+.pe-enhance-button,
+.pe-toast {
+    all: initial;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+}
+
+/* Additional responsive styles for different screen sizes */
+@media (max-width: 768px) {
+    .pe-enhance-button {
+        font-size: 11px !important;
+        padding: 5px 10px !important;
+        min-width: 90px !important;
+    }
+    
+    .pe-toast {
+        right: 10px !important;
+        top: 10px !important;
+        max-width: 250px !important;
+        font-size: 13px !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .pe-enhance-button {
+        border: 2px solid white !important;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .pe-enhance-button,
+    .pe-toast {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .pe-enhance-button:hover {
+        transform: none !important;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .pe-toast {
+        background: #1f2937 !important;
+        border-color: #374151 !important;
+        color: #f9fafb !important;
+    }
+    
+    .pe-toast.error {
+        background: #7f1d1d !important;
+        border-color: #dc2626 !important;
+        color: #fecaca !important;
+    }
+    
+    .pe-toast.success {
+        background: #14532d !important;
+        border-color: #16a34a !important;
+        color: #bbf7d0 !important;
+    }
+}
+
