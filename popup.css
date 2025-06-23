@@ -377,10 +377,13 @@ body.dark {
     margin-bottom: 12px;
     padding: 0 12px;
     font-size: 14px;
+    min-width: 0;
+    width: 100%;
 }
 .collapsible-content.open {
     max-height: 120px;
-    padding: 12px;
+    padding: 0 12px;
+    overflow-y: auto;
 }
 
 /* Sun/Moon Toggle */
