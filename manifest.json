@@ -1,14 +1,14 @@
 {
   "manifest_version": 3,
   "name": "Prompt Enhancer",
-  "version": "1.0.0",
-  "description": "Enhance your prompts using Meta Llama-3.3-70B-Instruct-Turbo-Free via Together.ai",
+  "version": "1.1.2",
+  "description": "Enhance your prompts using DeepSeek R1 32B via OpenRouter",
   "permissions": [
     "storage",
     "activeTab"
   ],
   "host_permissions": [
-    "https://api.together.xyz/*",
+    "https://openrouter.ai/*",
     "<all_urls>"
   ],
   "action": {

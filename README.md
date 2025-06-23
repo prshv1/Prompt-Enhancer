@@ -1,10 +1,10 @@
 # Prompt Enhancer - Chrome Extension
 
-A powerful Chrome extension that enhances your prompts using Meta Llama-3.3-70B-Instruct-Turbo-Free via Together.ai. Transform your raw prompts into optimized, clear instructions for better AI interactions.
+A powerful Chrome extension that enhances your prompts using DeepSeek R1 32B via OpenRouter. Transform your raw prompts into optimized, clear instructions for better AI interactions.
 
 ## Features
 
-- 🚀 **AI-Powered Enhancement**: Uses Meta Llama-3.3-70B-Instruct-Turbo-Free to rewrite prompts
+- 🚀 **AI-Powered Enhancement**: Uses DeepSeek R1 32B to rewrite prompts
 - 🔒 **Secure Storage**: Encrypted API key storage with AES-GCM encryption
 - 🎯 **Smart Detection**: Automatically detects text areas and rich-text editors
 - 🌐 **Domain Whitelist**: Control which websites the extension is active on
@@ -42,9 +42,9 @@ A powerful Chrome extension that enhances your prompts using Meta Llama-3.3-70B-
 
 ## Setup
 
-### 1. Get Your Together.ai API Key
+### 1. Get Your OpenRouter API Key
 
-1. Visit [Together.ai](https://together.ai/)
+1. Visit [OpenRouter](https://openrouter.ai/)
 2. Sign up for an account or log in
 3. Navigate to your API settings
 4. Generate a new API key
@@ -57,7 +57,7 @@ A powerful Chrome extension that enhances your prompts using Meta Llama-3.3-70B-
    - Or right-click the icon and select "Options"
 
 2. **Enter Your API Key**
-   - Paste your Together.ai API key in the "Product Key" field
+   - Paste your OpenRouter API key in the "Product Key" field
    - The key will be encrypted and stored securely
 
 3. **Set Active Sites**
@@ -129,8 +129,8 @@ Include relevant examples and statistics where appropriate.
 - Try refreshing the page after updating settings
 
 **API Key Errors**
-- Verify your Together.ai API key is correct
-- Check your Together.ai account has sufficient credits
+- Verify your OpenRouter API key is correct
+- Check your OpenRouter account has sufficient credits
 - Use the "Test Connection" button to verify the key
 
 **Button Not Appearing**
@@ -147,7 +147,7 @@ Include relevant examples and statistics where appropriate.
 
 | Error | Solution |
 |-------|----------|
-| "Please configure your API key" | Add your Together.ai API key in extension settings |
+| "Please configure your API key" | Add your OpenRouter API key in extension settings |
 | "Invalid API key" | Check your API key is correct and active |
 | "Rate limit exceeded" | Wait a moment before trying again |
 | "Prompt is too long" | Reduce prompt length to under 4000 characters |
@@ -158,13 +158,13 @@ Include relevant examples and statistics where appropriate.
 ### Data Protection
 - **API keys are encrypted** using AES-GCM encryption before storage
 - **No data is collected** by the extension itself
-- **Prompts are sent only to Together.ai** for enhancement
+- **Prompts are sent only to OpenRouter** for enhancement
 - **No tracking or analytics** are implemented
 
 ### Permissions Explained
 - **Storage**: To save your encrypted API key and domain settings
 - **Active Tab**: To inject enhancement buttons on whitelisted pages
-- **Host Permissions**: To communicate with Together.ai API
+- **Host Permissions**: To communicate with OpenRouter API
 
 ## Development
 
@@ -204,13 +204,9 @@ prompt-enhancer-extension/
 
 ## Changelog
 
-### Version 1.0.0
-- Initial release
-- AI-powered prompt enhancement
-- Secure API key storage
-- Domain whitelist functionality
-- Real-time validation
-- Responsive design
+### Version 1.1.2
+- Switched to DeepSeek R1 32B via OpenRouter for improved prompt enhancement
+- Improved prompt enhancement quality
 
 ## Support
 
@@ -226,9 +222,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Credits
 
-- **AI Model**: Meta Llama-3.3-70B-Instruct-Turbo-Free via Together.ai
+- **AI Model**: DeepSeek R1 32B via OpenRouter
 - **Developer**: [@prshv1](https://github.com/prshv1/)
-- **Social**: [@parshva.0](https://www.instagram.com/parshva.0/)
 
 ---
 

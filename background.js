@@ -93,10 +93,11 @@ Guidelines:
 - Keep the enhanced prompt concise but comprehensive
 - Return ONLY the improved prompt without any additional commentary
 
-Original prompt to enhance:`;
+Original prompt to enhance:
+`;
 
   const requestBody = {
-    model: "meta-llama/Llama-3.3-70B-Instruct-Turbo-Free",
+    model: "deepseek/deepseek-r1-distill-llama-70b:free",
     messages: [
       {
         role: "system",
@@ -117,12 +118,13 @@ Original prompt to enhance:`;
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
 
-    const response = await fetch('https://api.together.xyz/v1/chat/completions', {
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${productKey}`,
-        'User-Agent': 'PromptEnhancer/1.0'
+        'HTTP-Referer': 'https://your-extension-or-site.com/',
+        'X-Title': 'Prompt Enhancer Extension'
       },
       body: JSON.stringify(requestBody),
       signal: controller.signal
