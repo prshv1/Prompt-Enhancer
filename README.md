@@ -205,10 +205,6 @@ prompt-enhancer-extension/
 
 ## Changelog
 
-### Version 1.2.2
-- Bug fixes
-- Removed How it works section
-
 ### Version 1.2.0
 - Major UI overhaul: modern, compact, and responsive popup
 - Added dark mode with sun/moon toggle
@@ -243,4 +239,3 @@ This project is licensed under the MIT License, Would appreciate credits
 ---
 
 **Made with ❤️ for better AI interactions**
-

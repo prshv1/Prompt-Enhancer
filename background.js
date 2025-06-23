@@ -216,4 +216,3 @@ async function enhancePromptWithRateLimit(originalPrompt, productKey) {
   rateLimiter.recordRequest();
   return await handlePromptEnhancement(originalPrompt, productKey);
 }
-

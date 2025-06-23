@@ -36,16 +36,10 @@ document.addEventListener('DOMContentLoaded', function() {
             howItWorksContent.style.maxHeight = howItWorksContent.scrollHeight + 'px';
             arrow.textContent = '▲';
         } else {
-            howItWorksContent.style.maxHeight = '0px';
+            howItWorksContent.style.maxHeight = null;
             arrow.textContent = '▼';
         }
     });
-    // On load, ensure maxHeight is set correctly
-    if (howItWorksContent.classList.contains('open')) {
-        howItWorksContent.style.maxHeight = howItWorksContent.scrollHeight + 'px';
-    } else {
-        howItWorksContent.style.maxHeight = '0px';
-    }
 
     // Dark mode toggle (button with sun/moon icons)
     function setDarkMode(enabled) {
