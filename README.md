@@ -218,12 +218,14 @@ For issues, questions, or feature requests:
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License, Would appreciate credits 
 
 ## Credits
 
 - **AI Model**: DeepSeek R1 32B via OpenRouter
 - **Developer**: [@prshv1](https://github.com/prshv1/)
+- **Social**: [@parshva.0](https://www.instagram.com/parshva.0/)
+
 
 ---
 
