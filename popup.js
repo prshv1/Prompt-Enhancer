@@ -7,6 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const saveBtn = document.getElementById('saveBtn');
     const testBtn = document.getElementById('testBtn');
     const statusMessage = document.getElementById('statusMessage');
+    const howItWorksBtn = document.getElementById('howItWorksBtn');
+    const howItWorksContent = document.getElementById('howItWorksContent');
+    const darkModeSwitch = document.getElementById('darkModeSwitch');
+    const iconSun = darkModeSwitch.querySelector('.icon-sun');
+    const iconMoon = darkModeSwitch.querySelector('.icon-moon');
+    const keyStrength = document.getElementById('keyStrength');
+    const statusIcon = document.getElementById('statusIcon');
+    const statusText = document.getElementById('statusText');
 
     // Load saved settings
     loadSettings();
@@ -19,6 +27,69 @@ document.addEventListener('DOMContentLoaded', function() {
     productKeyInput.addEventListener('input', validateProductKeyInput);
     whitelistedDomainsInput.addEventListener('input', validateDomainsInput);
     
+    // Collapsible How it Works
+    howItWorksBtn.addEventListener('click', function() {
+        howItWorksBtn.classList.toggle('active');
+        howItWorksContent.classList.toggle('open');
+        const arrow = howItWorksBtn.querySelector('.arrow');
+        if (howItWorksContent.classList.contains('open')) {
+            howItWorksContent.style.maxHeight = howItWorksContent.scrollHeight + 'px';
+            arrow.textContent = '▲';
+        } else {
+            howItWorksContent.style.maxHeight = null;
+            arrow.textContent = '▼';
+        }
+    });
+
+    // Dark mode toggle (button with sun/moon icons)
+    function setDarkMode(enabled) {
+        if (enabled) {
+            document.body.classList.add('dark');
+            localStorage.setItem('pe_dark_mode', '1');
+            iconSun.style.display = 'none';
+            iconMoon.style.display = 'inline';
+        } else {
+            document.body.classList.remove('dark');
+            localStorage.setItem('pe_dark_mode', '0');
+            iconSun.style.display = 'inline';
+            iconMoon.style.display = 'none';
+        }
+    }
+    darkModeSwitch.addEventListener('click', function() {
+        const isDark = document.body.classList.contains('dark');
+        setDarkMode(!isDark);
+    });
+    // On load, set dark mode from localStorage
+    if (localStorage.getItem('pe_dark_mode') === '1') {
+        setDarkMode(true);
+    } else {
+        setDarkMode(false);
+    }
+
+    // API key strength indicator
+    function updateKeyStrength() {
+        const value = productKeyInput.value.trim();
+        let strength = 'weak';
+        let label = 'Weak';
+        if (value.length > 24 && /[A-Z]/.test(value) && /[a-z]/.test(value) && /[0-9]/.test(value)) {
+            strength = 'strong';
+            label = 'Strong';
+        } else if (value.length > 16) {
+            strength = 'medium';
+            label = 'Medium';
+        }
+        keyStrength.className = 'key-strength ' + strength;
+        keyStrength.textContent = value ? label : '';
+    }
+    productKeyInput.addEventListener('input', updateKeyStrength);
+    updateKeyStrength();
+
+    // Tooltip for product key
+    const tooltip = document.querySelector('.tooltip');
+    tooltip.addEventListener('mouseenter', function() {
+        tooltip.setAttribute('aria-label', tooltip.title);
+    });
+
     // Real-time validation functions
     function validateProductKeyInput() {
         const value = productKeyInput.value.trim();
@@ -205,14 +276,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Show status message
+    // Enhanced status message with icon
     function showStatus(message, type) {
-        statusMessage.textContent = message;
         statusMessage.className = `status-message ${type}`;
-        
-        // Auto-hide after 5 seconds
+        statusIcon.textContent = type === 'success' ? '✔️' : '❌';
+        statusText.textContent = message;
+        statusMessage.style.display = 'flex';
         setTimeout(() => {
             statusMessage.className = 'status-message hidden';
+            statusMessage.style.display = 'none';
         }, 5000);
     }
 

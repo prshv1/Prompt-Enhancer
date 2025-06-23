@@ -10,6 +10,7 @@ A powerful Chrome extension that enhances your prompts using DeepSeek R1 32B via
 - 🌐 **Domain Whitelist**: Control which websites the extension is active on
 - ⚡ **Real-time Validation**: Instant feedback on API keys and domain configurations
 - 🎨 **Adaptive UI**: Floating buttons that match your page's theme
+- 🌓 **Modern UI**: Compact, responsive, dark mode, sun/moon toggle, and improved color contrast
 - 📱 **Responsive Design**: Works on both desktop and mobile browsers
 
 ## Installation
@@ -203,6 +204,14 @@ prompt-enhancer-extension/
 5. Submit a pull request
 
 ## Changelog
+
+### Version 1.2.0
+- Major UI overhaul: modern, compact, and responsive popup
+- Added dark mode with sun/moon toggle
+- Improved color contrast and accessibility
+- More compact header and reduced blank space
+- Wider popup for better usability
+- All text colors now adapt to light/dark mode for perfect readability
 
 ### Version 1.1.2
 - Switched to DeepSeek R1 32B via OpenRouter for improved prompt enhancement
